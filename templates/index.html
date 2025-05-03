@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Segmento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #e0e0e0, #f8f9fa);
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .split-container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .info-side {
+            background: #e0e8f9;
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #1c1c1c;
+        }
+        .info-side h2 {
+            font-weight: bold;
+        }
+        .info-side p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        .form-side {
+            flex: 1;
+            padding: 40px;
+        }
+        .form-side h3 {
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <div class="info-side">
+            <h2>Predicción de segmento de smartphones 📱</h2>
+            <p>Este formulario te permite ingresar las características técnicas de un smartphone para predecir a qué segmento pertenece: Budget, Midrange o Premium.</p>
+            <p>Una herramienta ideal para conocer el posicionamiento de tus productos según sus especificaciones.</p>
+        </div>
+        <div class="form-side">
+            <h3 class="text-center">Completa las características</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Precio (USD)</label>
+                    <input name="price_usd" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Batería (mAh)</label>
+                    <input name="battery_mah" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">RAM (GB)</label>
+                    <input name="ram_gb" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Almacenamiento (GB)</label>
+                    <input name="storage_gb" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cámara (MP)</label>
+                    <input name="camera_mp" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Pantalla (pulgadas)</label>
+                    <input name="screen_size_in" type="number" step="any" required class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Peso (g)</label>
+                    <input name="weight_g" type="number" step="any" required class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">🔍 Predecir segmento</button>
+            </form>
+
+            {% if resultado %}
+            <div class="alert alert-info text-center result mt-4">
+                📊 Segmento predicho: <strong>{{ resultado }}</strong>
+                <br>
+                {% if resultado == 'Budget' %}
+                    💰 Ideal para usuarios con bajo presupuesto.
+                {% elif resultado == 'Midrange' %}
+                    ⚖️ Buen balance entre calidad y precio.
+                {% elif resultado == 'Premium' %}
+                    👑 Alta gama con las mejores prestaciones.
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
